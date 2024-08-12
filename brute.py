@@ -82,13 +82,14 @@ def send_request(s):
                 # Schedule GUI update for successful request
                 root.after(0, lambda: log_text.insert(tk.END, f'Successful: {s} | Status Code: {response.status_code}\n'))
             elif response.status_code == 429:
-                print(f'Received 429 Too Many Requests. Pausing for 30 seconds...')
+                print(f'Received 429 Too Many Requests. Pausing for 5 seconds...')
                 pause_event.clear()
-                time.sleep(45)
+                time.sleep(5)
                 pause_event.set()
             else:
                 logging.info(f'Failed code: {s} | Status Code: {response.status_code}')
                 print(f'Sent: {s} | Status Code: {response.status_code}')
+                time.sleep(1)
             
             break
 
